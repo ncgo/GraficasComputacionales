@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<title>Mouse Camera Control</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<!-- CSS only -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+		<!-- JS, Popper.js, and jQuery -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="css/my-style.css">
+		<script src="js/lib/gl-matrix-min.js" type="text/javascript"></script>
+		<script src="js/lib/shaders.js" type="text/javascript"></script>
+		<script src="js/event-handler.js" type="text/javascript"></script>
+		<script src="js/main.js" type="text/javascript"></script>
+	</head>
+
+	<body onload="main();">
+        <canvas id="canvas" width="500" height="500"></canvas>
+	</body>
+
+	<h2>Color</h2>
+	<h5 style = "color: red">Red</h5>
+	<div class="slidecontainer">
+		<input type="range" min="0" max="255" value="128" class="slider" id="cRed">
+		<p>Value: <span id="demoRed"></span></p>
+	</div>
+	<h5 style = "color: green">Green</h5>
+	<div class="slidecontainer">
+		<input type="range" min="0" max="255" value="128" class="slider" id="cGreen">
+		<p>Value: <span id="demoGreen"></span></p>
+	</div>
+
+	<h5 style = "color: blue">Blue</h5>
+	<div class="slidecontainer">
+		<input type="range" min="0" max="255" value="128" class="slider" id="cBlue">
+		<p>Value: <span id="demoBlue"></span></p>
+
+	</div>
+
+	<h5>Opacity</h5>
+	<div class="slidecontainer">
+		<input type="range" min="0" max="100" value="100" class="slider" id="Opacity">
+		<p>Value: <span id="demoOpacity"></span></p>
+
+	</div>
+
+	<h5 style="color: purple">Size</h5>
+	<div class="slidecontainer">
+		<input type="range" min="0" max="100" value="50" class="slider" id="Size">
+		 <p>Value: <span id="demoSize"></span></p>
+	</div>
+
+
+	<!-- Vertex Shader Program -->
+	<script id="vertexShader" type="x-shader/x-vertex">
+		uniform mat4 uModelViewMatrix;
+		uniform mat4 uProjMatrix;
+		uniform float uPointSize;
+		void main()
+		{
+			gl_Position = uProjMatrix*uModelViewMatrix*vec4(0.5, 0., 0., 1.); // P' = Mproj Mmodel-view P
+			gl_PointSize = uPointSize;
+		}
+	</script>
+
+	<!-- Fragment Shader Program -->
+	<script id="fragmentShader" type="x-shader/x-fragment">
+		precision mediump float;	// fragment shaders don't have a default precision
+		uniform vec4 uColor;
+		void main()
+		{
+			gl_FragColor = uColor;
+		}
+	</script>
+
+	<script>
+		var size = document.getElementById("Size");
+		var output1 = document.getElementById("demoSize");
+		output1.innerHTML = size.value;
+
+		size.oninput = function() {
+		  output1.innerHTML = this.value;
+		}
+	</script>
+
+	<script>
+		var red = document.getElementById("cRed");
+		var output2 = document.getElementById("demoRed");
+		output2.innerHTML = red.value;
+
+		red.oninput = function() {
+		  output2.innerHTML = this.value;
+		}
+	</script>
+
+	<script>
+		var green = document.getElementById("cGreen");
+		var output3 = document.getElementById("demoGreen");
+		output3.innerHTML = green.value;
+
+		green.oninput = function() {
+		  output3.innerHTML = this.value;
+		}
+	</script>
+
+	<script>
+		var blue = document.getElementById("cBlue");
+		var output4 = document.getElementById("demoBlue");
+		output4.innerHTML = blue.value;
+
+		blue.oninput = function() {
+		  output4.innerHTML = this.value;
+		}
+	</script>
+
+	<script>
+		var opacity = document.getElementById("Opacity");
+		var output5 = document.getElementById("demoOpacity");
+		output5.innerHTML = opacity.value;
+
+		opacity.oninput = function() {
+		  output5.innerHTML = this.value;
+		}
+	</script>
+	
+</html>
