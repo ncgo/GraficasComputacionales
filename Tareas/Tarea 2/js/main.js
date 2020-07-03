@@ -179,14 +179,15 @@ function main()
 function trianglePressed()
 {
     var tColor = hexToRgb(triangle.value);
-    colors = [tColor,tColor,tColor];
+    colors = [tColor[0]/255,tColor[1]/255,tColor[2]/255,1.,
+              tColor[0]/255,tColor[1]/255,tColor[2]/255,1.,
+              tColor[0]/255,tColor[1]/255,tColor[2]/255,1.];
 	vboColors = gl.createBuffer();
 	var bufferType = gl.ARRAY_BUFFER;
 	gl.bindBuffer(bufferType, vboColors);
 	var data = new Float32Array(colors);
 	var usage = gl.STATIC_DRAW;
     gl.bufferData(bufferType, data, usage);
-    requestAnimationFrame(renderLoop);
 }
 
 
