@@ -5,3 +5,12 @@ h1 {
 	font-family: 'Coming Soon', cursive;
 	font-size: 80;
 }
+
+.Choosing {
+	width: 250px;
+	padding: 10px;
+	border: hidden;
+	position: relative;
+	display: inline-block;
+	height: 50px;
+}

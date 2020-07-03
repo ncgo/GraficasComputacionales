@@ -2,13 +2,14 @@
 var canvas;					// HTML canvas
 var gl;						// WebGL Rendering Context
 var vertices;				// Model vertices
-var shaderProgram;			// Shader Program 1
-//var shaderProgram2;         // Shader Program 2, vertex color shader program
-var vbo;					// Vertex Buffer Object for Positions & Colors
+var shaderProgram;			// Shader Program
+var vbo;					// Vertex Buffer Object for Positions
+var vboColors;				// Vertex Buffer Obect for Colors
 var modelMatrix;			// Model Matrix
 var viewMatrix;				// View Matrix
 var pointSize;
 var color;
+var colors;					// Vertex colors
 
 // Camera parameters
 var eye;					// Camera position
@@ -20,15 +21,16 @@ var dragging;			// True or false
 var xLast, yLast; 		// Last position		
 var rotX, rotY;			// Acumlulation
 
-
 function init()
 {	
 	// Init Model
-	vertices = [0., 0.5, 0., 1., 1., 0., 1.,	// X0, y0, z0, R0, G0, B0
-			   -0.5, -0.5, 0., 1., 0., 0., 1.,
-			    0.5, -0.5, 0., 1., 0., 0., 1.
+	vertices = [0., 0.5, 0.,	// X0, y0, z0
+			   -0.5, -0.5, 0.,
+			    0.5, -0.5, 0.
 			    ];	
-
+	colors = [1., 0., 0., 1.,
+			  0., 1., 0., 1.,
+			  0., 0., 1., 1.];
 	pointSize = 12.;
 	color = [1., 1., 0., 1.];
 
@@ -57,13 +59,22 @@ function init()
 	gl.useProgram(shaderProgram);					// Set the current Shader Program to use
 
 	// Init Buffers
-	// VBO for positions & Colors
+	// VBO for positions
 	vbo = gl.createBuffer();
 	var bufferType = gl.ARRAY_BUFFER;
 	gl.bindBuffer(bufferType, vbo);
 	var data = new Float32Array(vertices);
 	var usage = gl.STATIC_DRAW;
 	gl.bufferData(bufferType, data, usage);
+
+	// VBO for colors
+	vboColors = gl.createBuffer();
+	var bufferType = gl.ARRAY_BUFFER;
+	gl.bindBuffer(bufferType, vboColors);
+	var data = new Float32Array(colors);
+	var usage = gl.STATIC_DRAW;
+	gl.bufferData(bufferType, data, usage);
+	
 
 	// Init Uniforms
 	// uPointSize
@@ -104,26 +115,14 @@ function init()
 	document.addEventListener("mousemove", mouseMoveEventListener, false);
 }
 
-
-function hexToRgb(hex) {
-	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return [parseInt(result[1], 16)/255., parseInt(result[2], 16)/255., parseInt(result[3]/255., 16), 1.];
-}
-
 function update()
 {
 
-	console.log(choose.value);
-	if (choose.value === "chooseTriangleColor") {
-		console.log("joe");
-		aColor = hexToRgb(triangle.value);
-		console.log(aColor);
+}
 
-	} else {
-
-	}
-
-	
+function hexToRgb(hex) {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), 1.];
 }
 
 function renderLoop()
@@ -141,7 +140,7 @@ function renderLoop()
 	var size = 3;	// X, Y, Z
 	var type = gl.FLOAT;
 	var normalized = false;
-	var stride = (3 + 4) * 4;
+	var stride = 0;
 	var offset = 0;
 	gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
 	gl.enableVertexAttribArray(aPositionLocation);
@@ -149,14 +148,14 @@ function renderLoop()
 	// Layout VBO for colors
 	gl.useProgram(shaderProgram);
 	var bufferType = gl.ARRAY_BUFFER;
-	gl.bindBuffer(bufferType, vbo);
+	gl.bindBuffer(bufferType, vboColors);
 	var aColorLocation = gl.getAttribLocation(shaderProgram, "aColor");
 	var index = aColorLocation;
 	var size = 4;	// R, G, B, A
 	var type = gl.FLOAT;
 	var normalized = false;
-	var stride = (3 + 4) * 4;
-	var offset = 3 * 4;
+	var stride = 0;
+	var offset = 0;
 	gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
 	gl.enableVertexAttribArray(aColorLocation);
 
@@ -176,5 +175,35 @@ function main()
 	requestAnimationFrame(renderLoop);				// render loop
 }
 
+
+function trianglePressed()
+{
+    var tColor = hexToRgb(triangle.value);
+    colors = [tColor,tColor,tColor];
+	vboColors = gl.createBuffer();
+	var bufferType = gl.ARRAY_BUFFER;
+	gl.bindBuffer(bufferType, vboColors);
+	var data = new Float32Array(colors);
+	var usage = gl.STATIC_DRAW;
+    gl.bufferData(bufferType, data, usage);
+    requestAnimationFrame(renderLoop);
+}
+
+
+function vertexPressed(){
+    var v1 = hexToRgb(vertex1.value);
+    var v2 = hexToRgb(vertex2.value);
+    var v3 = hexToRgb(vertex3.value);
+    colors = [v1[0]/255,v1[1]/255,v1[2]/255,1.,
+              v2[0]/255,v2[1]/255,v2[2]/255,1.,
+              v3[0]/255,v3[1]/255,v3[2]/255,1.];
+    console.log(colors);
+	vboColors = gl.createBuffer();
+	var bufferType = gl.ARRAY_BUFFER;
+	gl.bindBuffer(bufferType, vboColors);
+	var data = new Float32Array(colors);
+	var usage = gl.STATIC_DRAW;
+    gl.bufferData(bufferType, data, usage);
+}
 
 

@@ -10,22 +10,23 @@
 		<script src="js/main.js" type="text/javascript"></script>
 	</head>
 
-	<body onload="main();">
-		<div style="position: relative"><canvas id="canvas" width="500" height="500"></canvas>
+	<body onload="main();" >
+		<div><canvas id="canvas" width="500" height="500"></canvas>
 		</div>
-		<input type="radio" id="choose" name="choose" value="chooseVertexColor">
-		<label for="choose">Cambiar color de los vértices</label><br>
-		<input type="radio" id="choose" name="choose" value="chooseTriangleColor" checked>
-		<label for="choose">Cambiar el color del triángulo</label><br>
-		<div id="Vertex">
+		<div class="Choosing">
+			<h2>Cambiar el color del triángulo</h2>
+			<p>Seleccione el color para pintar al triángulo en su totalidad.</p>
+			<p>Color del Triángulo : <input id="triangle" name="triangleColor" type="color"></p>
+			<button class="button" type="button" onclick="trianglePressed()">Color me!</button>
+		</div>
+		<div class="Choosing">
+			<h2>Cambiar el color de cada vértice</h2>
+			<p>Seleccione los colores para pintar a cada uno de los vértices en el triángulo.</p>
 			<p>Color de Vértice 1 : <input id="vertex1" name="vertex1Color" type="color"></p>
 			<p>Color de Vértice 2 : <input id="vertex2" name="vertex2Color" type="color"></p>
 			<p>Color de vértice 3 : <input id="vertex3" name="vertex3Color" type = "color"></p>
+			<button class="button" type="button" onclick="vertexPressed()">Color me!</button>
 		</div>
-		<div id="Triangle">
-			<p>Color del Triángulo : <input id="triangle" name="triangleColor" type="color"></p>
-		</div>
-		
 	</body>
 
 	<!-- Vertex Shader Program -->
@@ -52,25 +53,6 @@
 		{
 			gl_FragColor = vColor;
 		}
-	</script>
-	<script>
-		/*var chooseV = document.getElementById("chooseV");
-		var output = document.getElementById("chooseV");
-		output.innerHTML = chooseV.value;
-
-		chooseV.oninput = function() {
-		  output.innerHTML = this.value;
-		}*/
-		console.log(document.getElementById("choose").value);
-	</script>
-	<script>/*
-		var chooseT = document.getElementById("chooseT");
-		var output1 = document.getElementById("chooseT");
-		output1.innerHTML = chooseT.value;
-
-		chooseT.oninput = function() {
-		  output1.innerHTML = this.value;
-		}*/
 	</script>
 
 	<script>
