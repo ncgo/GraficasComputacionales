@@ -13,4 +13,6 @@ h1 {
 	position: relative;
 	display: inline-block;
 	height: 50px;
+	font-family: 'Arial';
+	align-items: center;
 }
