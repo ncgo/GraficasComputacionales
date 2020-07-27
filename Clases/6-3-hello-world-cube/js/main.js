@@ -26,23 +26,60 @@ var rotX, rotY;			// Acumlulation
 function init()
 {	
 	// Init Model
-	vertices = [-0.5, 0.5, 0.5,		// V0
-				-0.5, -0.5, 0.5,	// v1
-				 0.5, -0.5, 0.5,	// v2
-			     0.5, 0.5, 0.5,		// V3
-				 0.5,-0.5,-0.5,		// V4
-				 0.5,0.5,-0.5,		// V5
-				-0.5,0.5,-0.5,		// V6
-				-0.5,-0.5,-0.5		// V7
+	vertices = [-0.5, 0.5, 0.5,		// V0 Cara 1.0
+				-0.5, -0.5, 0.5,	// v1 Cara 1.1
+				 0.5, -0.5, 0.5,	// v2 Cara 1.2
+				 0.5, 0.5, 0.5,		// V3 Cara 1.3
+				 
+				 0.5, 0.5, 0.5,		// V4 Cara 2.0
+				 0.5, -0.5, 0.5,	// v5 Cara 2.1
+				 0.5,-0.5,-0.5,		// V6 Cara 2.2
+				 0.5,0.5,-0.5,		// V7 Cara 2.3
+
+				 0.5,0.5,-0.5,		// V8 Cara 3.0
+				 0.5,-0.5,-0.5,		// V9 Cara 3.1
+				-0.5,-0.5,-0.5,		// V10 Cara 3.2
+				-0.5,0.5,-0.5,		// V11 Cara 3.3
+
+				-0.5,0.5,-0.5,		// V12 Cara 4.0
+				-0.5,-0.5,-0.5,		// V13 Cara 4.1
+				-0.5, -0.5, 0.5,	// V14 Cara 4.2
+				-0.5, 0.5, 0.5,		// V15 Cara 4.3
+
+				-0.5,0.5,-0.5,		// V16 Cara 5.0
+				-0.5, 0.5, 0.5,		// V17 Cara 5.1
+				0.5, 0.5, 0.5,		// V18 Cara 5.2
+				0.5,0.5,-0.5,		// V19 Cara 5.3
+
+				-0.5,-0.5,-0.5,		// V20 Cara 6.0
+				0.5,-0.5,-0.5,		// V21 Cara 6.1
+				0.5, -0.5, 0.5,		// v22 Cara 6.2
+				-0.5, -0.5, 0.5,	// v23 Cara 6.3
 			    ];	
 	colors = [1., 0., 0., 1.,
+			  1., 0., 0., 1.,
+			  1., 0., 0., 1.,
+			  1., 0., 0., 1., 	//cara 1
 			  0., 1., 0., 1.,
+			  0., 1., 0., 1.,
+			  0., 1., 0., 1.,
+			  0., 1., 0., 1.,	//cara 2
 			  0., 0., 1., 1.,
+			  0., 0., 1., 1.,
+			  0., 0., 1., 1.,
+			  0., 0., 1., 1.,	//cara 3
 			  1., 1., 0., 1.,
+			  1., 1., 0., 1.,
+			  1., 1., 0., 1.,
+			  1., 1., 0., 1.,	//cara 4
 			  1., 0., 1., 1.,
+			  1., 0., 1., 1.,
+			  1., 0., 1., 1.,
+			  1., 0., 1., 1.,	//cara 5
 			  1., 1., 1., 1.,
-			  0., 0., 1., 1.,
-			  1., 1., 0., 1.
+			  1., 1., 1., 1.,
+			  1., 1., 1., 1.,
+			  1., 1., 1., 1.	//cara 6
 			  ];
 	//indices = [0, 1, 2, 3];	// points: gl.POINTS
 	//indices = [0,1, 1,2, 2,3, 3,0];	// points: gl.LINES
@@ -50,7 +87,8 @@ function init()
 	//indices = [0, 1, 2, 3];	// points: gl.LINE_LOOP
 	//indices = [0,1,2, 0,2,3];	// points: gl.LINE_TRIANGLES
 	//indices = [1, 0, 2, 3];	// points: gl.TRIANGLE_STRIP;
-	indices = [0, 1, 2, 3, 0, 3, 2, 4, 5, 3, 5, 4, 7, 6, 5, 6, 7, 1, 0, 6, 6, 0, 3, 5, 6, 7, 4, 2, 1, 7];	
+	//indices = [0, 1, 2, 3];	// points: gl.TRIANGLE_FAN
+	indices = [0,1,2,3, 4,5,6,7, 8,9,10,11, 12,13,14,15, 16,17,18,19, 20,21,22,23 ];	
 	pointSize = 12.;
 	color = [1., 1., 0., 1.];
 
@@ -186,7 +224,7 @@ function renderLoop()
 	var bufferType = gl.ELEMENT_ARRAY_BUFFER;
 	gl.bindBuffer(bufferType, ibo);
 
-	var primitiveType = gl.LINE_STRIP;					// WebGL Primitive to be rendered
+	var primitiveType = gl.TRIANGLE_FAN;					// WebGL Primitive to be rendered
 	var count = indices.length;							// Number of indices to be rendered
 	var type = gl.UNSIGNED_SHORT;
 	var offset = 0;									// Bytes offset in the buffer
