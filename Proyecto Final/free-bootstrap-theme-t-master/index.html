@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Proyecto Final de la Clase de Gráficas Computacionales Verano2020.">
+  <meta name="author" content="Nadia García y Eduardo Vega">
   <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
-  <title>Travel</title>
+  <title>Atomic Structure</title>
   <!--stylesheet-->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -26,10 +26,10 @@
     <script src="js/main.js" type="text/javascript"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload = main();>
   <!-- Navigation -->
   <div class="logo">
-    <i class="fa fa-plane" aria-hidden="true"><span>Travel</span></i>
+    <i class="fa fa-flask" aria-hidden="true"><span>Atomic Structure</span></i>
   </div>
   <a class="menu-toggle rounded" href="#">
     <i class="fa fa-bars"></i>
@@ -43,16 +43,16 @@
         <a class="smooth-scroll" href="#page-top">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="smooth-scroll" href="#About">About</a>
+        <a class="smooth-scroll" href="#App">App</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="smooth-scroll" href="#Services">Services</a>
+        <a class="smooth-scroll" href="#Funcion">How does it work?</a></a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="smooth-scroll" href="#Portfolio">Portfolio</a>
+        <a class="smooth-scroll" href="#Portfolio">Learn More</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="smooth-scroll" href="#Testimonials">Testimonials</a>
+        <a class="smooth-scroll" href="#Nosotros">Meet the Developers</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="smooth-scroll" href="#Contact">Contact</a>
@@ -64,24 +64,24 @@
     <div class="container content-wrap text-center">
       <h1>Atomic Visualizer</h1>
       <h3>
-          <em>A Bootstrap Theme to start building a new landing page</em>
+          <em>Learning tools</em>
         </h3>
-      <a class="btn btn-primary btn-xl smooth-scroll" href="#About">Try it now!</a>
+      <a class="btn btn-primary btn-xl smooth-scroll" href="#App">Try it now!</a>
     </div>
     <div class="overlay"></div>
   </section>
-  <!-- Header Ends -->
-  <!-- About Us Starts -->
-  <section id="About" class="content-section">
-    <canvas id="canvas"></canvas>
-    <canvas id="canvasHUD"></canvas>
+  <section id="App" class="content-section">
+    <div>
+      <canvas id="canvas"></canvas>
+      <canvas id="canvasHUD"></canvas>
+    </div>
   </section>
-  <!-- About Us Starts -->
+
   <section id="Services" class="content-section text-center">
     <div class="container">
       <div class="block-heading">
         <h2>What We Offer</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Interactive 3D visualizers to enhance learning through multi-dimensional stimulation</p>
       </div>
       <div class="row">
         <div class="col-md-3 col-sm-6">
@@ -89,12 +89,12 @@
             <div class="service-icon yellow">
               <div class="front-content">
                 <i class="fa fa-globe" aria-hidden="true"></i>
-                <h3>Family Travel</h3>
+                <h3>Interaction</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>Family Travel</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+              <h3>Interactivity</h3>
+              <p>We believe that learning oriented software should be engaging with the users</p>
             </div>
           </div>
         </div>
@@ -103,12 +103,12 @@
             <div class="service-icon orange">
               <div class="front-content">
                 <i class="fa fa-suitcase"></i>
-                <h3>Business Travel</h3>
+                <h3>Open source</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>Business Travel</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+              <h3>Wanna contribute?</h3>
+              <p>The platform is open to collaboration with like minded individuals that would like to contribute proactively to the pr</p>
             </div>
           </div>
         </div>
@@ -117,12 +117,12 @@
             <div class="service-icon red">
               <div class="front-content">
                 <i class="fa fa-male" aria-hidden="true"></i>
-                <h3>Solo Travel</h3>
+                <h3>Using computer graphics learned in class!</h3>
               </div>
             </div>
             <div class="service-content">
-              <h3>Solo Travel</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+              <h3>ThreeJS</h3>
+              <p>Built using ThreeJS, a JavaScript framework.</p>
             </div>
           </div>
         </div>
@@ -274,36 +274,10 @@
     <div class="container">
       <div class="block-heading">
         <h2>Contact Us</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>As students, we are eager to learn and know your feedback.</p>
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="contact-wrapper">
-            <div class="address-block border-bottom">
-              <h3 class="add-title">Headquaters</h3>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span><span class="c-info">&nbsp;35 Street - Cheyenne, CO 80810</span>
-              </div>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span><span class="c-info">+123 4567 898</span>
-              </div>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><span class="c-info">email@yourdomain.com</span>
-              </div>
-            </div>
-            <div class="address-block">
-              <h3 class="add-title">Branch</h3>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span><span class="c-info">&nbsp;98 Berry - Cheyenne, CO 80810</span>
-              </div>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span><span class="c-info">+123 4567 8987</span>
-              </div>
-              <div class="c-detail">
-                <span class="c-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span><span class="c-info">email@yourdomain.com</span>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="form-wrap">
@@ -356,8 +330,8 @@
             </a>
         </li>
       </ul>
-      <p class="text-muted small mb-0">Copyright © Your Website 2018</p>
-      <p class="text-muted small mb-0">Designed by <a href="https://www.position2.com/" target="_balnk">Position2</p>
+      <p class="text-muted small mb-0">Copyright © Atomic Model 2018</p>
+      <p class="text-muted small mb-0">Designed by <a href="ngarciaorozco.xyz" target="_blank">Nadia & Eduardo</p>
     </div>
   </footer>
 </body>
