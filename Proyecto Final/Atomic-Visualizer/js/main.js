@@ -5,7 +5,7 @@ var scene, atomView, sceneBackground, neutronView, protonView, electronView, sce
 var camera, cameraBackground, cameraAtom, backgroundAtom, camera2;
 var light, lightBackground;
 var deepSpace, earth;
-var electron, neutron, proton, atom, orbit, nucleus;
+var electron, neutron, proton, atom, orbit, nucleus,core;
 var orbitas = [];
 var view = "atomView";
 
@@ -28,7 +28,12 @@ class Particula extends THREE.Mesh {
       this.material = new THREE.MeshLambertMaterial({
         map: new THREE.TextureLoader().load("img/electron.png")
       });
-    } else {
+    } else if(type==="core") {
+      this.geometry = new THREE.SphereGeometry(3, 100, 100);
+      this.material = new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load("img/struct.png")});
+      this.position.set(0,0,13);
+      } else {
       this.geometry = new THREE.SphereGeometry(2, 100, 100);
       this.material = new THREE.MeshLambertMaterial({
         map: new THREE.TextureLoader().load("img/nucleus.png")});
@@ -290,6 +295,8 @@ function verifyOverlap(p1, i) {
 
 var particles = [];
 function createAtom(protons = 1) {
+  core = new Particula("core");
+  scene.add(core);
   /*proton = new Particula("proton");
     proton.position.set(0,0,0);
     scene.add(proton);
@@ -457,6 +464,8 @@ function update() {
     proton.rotation.y = proton.rotation.y - 0.04;
   } else if (view == "electronView") {
     electron.rotation.y = electron.rotation.y - 0.04;
+  } else if (view == "atomView") {
+    core.rotation.y = core.rotation.y - 0.01;
   }
 }
 
