@@ -1,13 +1,13 @@
 "use strict";
 var canvas;
 var engine;
-var scene, atomView, sceneBackground, neutronView, protonView, electronView, scene2;
+var scene, atomView, sceneBackground, neutronView, protonView, electronView, scene2, onload;
 var camera, cameraBackground, cameraAtom, backgroundAtom, camera2;
 var light, lightBackground;
 var deepSpace, earth;
 var electron, neutron, proton, atom, orbit, nucleus,core;
 var orbitas = [];
-var view = "atomView";
+var view = "onload";
 
 class Particula extends THREE.Mesh {
   constructor(type = "nucleus") {
@@ -32,7 +32,7 @@ class Particula extends THREE.Mesh {
       this.geometry = new THREE.SphereGeometry(3, 100, 100);
       this.material = new THREE.MeshBasicMaterial({
         map: new THREE.TextureLoader().load("img/struct.png")});
-      this.position.set(0,0,13);
+      this.position.set(-3,0,13);
       } else {
       this.geometry = new THREE.SphereGeometry(2, 100, 100);
       this.material = new THREE.MeshLambertMaterial({
@@ -181,7 +181,8 @@ function electronClick() {
 }
 
 function nucleusClick() {
-    if (view == "atomView") { 
+    if (view == "atomView" || view =="onload") { 
+      scene.remove(core);
         var text = document.getElementById("nucleusText");
         console.log(text.style.display);
         if (text.style.display === "none") {
@@ -295,8 +296,10 @@ function verifyOverlap(p1, i) {
 
 var particles = [];
 function createAtom(protons = 1) {
-  core = new Particula("core");
-  scene.add(core);
+  if(view == "onload"){
+    core = new Particula("core");
+    scene.add(core);
+  }
   /*proton = new Particula("proton");
     proton.position.set(0,0,0);
     scene.add(proton);
@@ -417,10 +420,6 @@ function createAtom(protons = 1) {
       nucleus.position.set(0,0,0);
       scene.add(nucleus);
    }
-
-
-  
-
   accomodateElectrons(protons);
 }
 
@@ -464,7 +463,7 @@ function update() {
     proton.rotation.y = proton.rotation.y - 0.04;
   } else if (view == "electronView") {
     electron.rotation.y = electron.rotation.y - 0.04;
-  } else if (view == "atomView") {
+  } else if (view == "onload") {
     core.rotation.y = core.rotation.y - 0.01;
   }
 }

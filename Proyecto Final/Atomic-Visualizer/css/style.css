@@ -42,11 +42,11 @@ h4 {
 #neutronText {
   display: none;
   
-  position: absolute;
+  position: fixed;
   display: none;
-  z-index: 4;
+  z-index: 5;
   left: 0.9%;
-  top: 110%;
+  top: 11%;
   width: 8em;
   margin-bottom: -2.5em;
   width: 300px;
@@ -62,11 +62,11 @@ h4 {
 #nucleusText {
   display: none;
   
-  position: absolute;
+  position: fixed;
   display: none;
   z-index: 4;
   left: 0.9%;
-  top: 110%;
+  top: 11%;
   width: 8em;
   margin-bottom: -2.5em;
   width: 300px;
@@ -83,11 +83,11 @@ h4 {
 #electronText {
   display: none;
   
-  position: absolute;
+  position: fixed;
   display: none;
-  z-index: 4;
+  z-index: 7;
   left: 0.9%;
-  top: 150%;
+  top: 11%;
   width: 8em;
   margin-bottom: -2.5em;
   width: 300px;
@@ -103,11 +103,11 @@ h4 {
 #protonText {
   display: none;
   
-  position: absolute;
+  position: fixed;
   display: none;
-  z-index: 4;
+  z-index: 6;
   left: 0.9%;
-  top: 130%;
+  top: 11%;
   width: 8em;
   margin-bottom: -2.5em;
   width: 300px;
@@ -123,7 +123,7 @@ h4 {
 #audio {
   position: fixed;
   z-index: 99;
-  left: 0%%;
+  left: 0%;
   bottom: 0%;
 }
 
