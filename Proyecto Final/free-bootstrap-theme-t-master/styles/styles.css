@@ -135,7 +135,7 @@ span {
 #Banner {
   position: relative;
   height: 100vh;
-  background: linear-gradient(274deg, #46c8d0, #6262e2 44%, #c962f7);
+  background: linear-gradient(274deg, #3E92CC, #FFE66D 44%, #B3001B);
   color: #fff;
 }
 #Banner .content-wrap {
@@ -156,12 +156,12 @@ span {
   padding: 0;
 }
 #Banner .btn-primary {
-  background-color: #02ccba;
+  background-color: #97CC04;
   color: #fff;
   border: none;
 }
 #Banner .btn-primary:hover {
-	background-color: #07bcab;
+	background-color: #3E92CC;
 }
 #Services {
   background-color: #fafafa;

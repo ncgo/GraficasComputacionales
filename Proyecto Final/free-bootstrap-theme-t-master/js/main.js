@@ -5,6 +5,9 @@ var scene, sceneBackground;
 var camera, cameraBackground;
 var light, lightBackground;
 var deepSpace, earth;
+//var container = document.getElementById('CanvasViewer');
+//renderer.setSize($(container).width(), $(container).height());
+//container.appendChild(renderer.domElement);
 
 function update()
 {

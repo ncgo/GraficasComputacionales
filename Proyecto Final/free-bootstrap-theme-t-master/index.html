@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Proyecto Final de la Clase de Gráficas Computacionales Verano2020.">
   <meta name="author" content="Nadia García y Eduardo Vega">
-  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
   <title>Atomic Structure</title>
   <!--stylesheet-->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
@@ -24,10 +22,14 @@
     <script src="js/lib/dat.gui.min.js" type="text/javascript"></script>
     <script src="js/event-handler.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
 </head>
 
 <body id="page-top" onload = main();>
   <!-- Navigation -->
+  <div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  </div>
   <div class="logo">
     <i class="fa fa-flask" aria-hidden="true"><span>Atomic Structure</span></i>
   </div>
@@ -62,20 +64,28 @@
   <!-- Header Starts -->
   <section id="Banner" class="content-section">
     <div class="container content-wrap text-center">
-      <h1>Atomic Visualizer</h1>
+      <h1>Atomic Structure Visualizer</h1>
       <h3>
-          <em>Learning tools</em>
+          <em>An innovative learing tool using threeJS</em>
         </h3>
       <a class="btn btn-primary btn-xl smooth-scroll" href="#App">Try it now!</a>
     </div>
     <div class="overlay"></div>
   </section>
   <section id="App" class="content-section">
-    <div>
-      <canvas id="canvas"></canvas>
-      <canvas id="canvasHUD"></canvas>
+    <div id= "CanvasViewer">
+      <container id="Controls">
+        <h3>Interactive Model</h3>
+      </container>
+      <container>
+        <canvas id="canvas"></canvas>
+        <canvas id="canvasHUD"></canvas>
+      </container>
     </div>
   </section>
+
+  
+  
 
   <section id="Services" class="content-section text-center">
     <div class="container">
