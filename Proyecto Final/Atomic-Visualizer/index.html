@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Proyecto Final de la Clase de Gráficas Computacionales Verano2020.">
+  <meta name="author" content="Nadia García y Eduardo Vega">
+  <title>Atomic Structure</title>
+  <!--stylesheet-->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="styles/custom-responsive-styles.css" rel="stylesheet" type="text/css">
+  <!--scripts-->
+  <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="scripts/all-plugins.js"></script>
+  <script type="text/javascript" src="scripts/plugins-activate.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/lib/three.min.js" type="text/javascript"></script>
+    <script src="js/lib/orbit-controls.js" type="text/javascript"></script>
+    <script src="js/lib/dat.gui.min.js" type="text/javascript"></script>
+    <script src="js/event-handler.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+</head>
+
+<body id="page-top" onload = main();>
+  <audio controls id="audio">
+    <source src="img/Above_Planets.mp3" type="audio/mpeg" controls autoplay>
+  Your browser does not support the audio element.
+  </audio>
+  <!-- Navigation -->
+  <div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  </div>
+  <div class="logo">
+    <i class="fa fa-flask" aria-hidden="true"><span>Atomic Structure</span></i>
+  </div>
+  <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="smooth-scroll" href="#Header"></a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#page-top">Home</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#App">App</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Funcion">How does it work?</a></a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Portfolio">Learn More</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Nosotros">Meet the Developers</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Header Starts -->
+  <section id="Banner" class="content-section">
+    <div class="container content-wrap text-center">
+      <h1>Atomic Structure Visualizer</h1>
+      <h3>
+          <em>An innovative learning tool using threeJS</em>
+        </h3>
+      <a class="btn btn-primary btn-xl smooth-scroll" href="#App">Try it now!</a>
+    </div>
+    <div class="overlay"></div>
+  </section>
+  <section class="text-center" style="padding-top: 4%">
+    <h3>App</h3>
+    <p>Get to know the atom by clicking on the buttons to the right.</p>
+  </section>
+  <section id="App" class="content-section">
+    <div id= "CanvasViewer">
+      <container id="partsText">
+        <div id="neutronText">
+          <h5>Neutron</h5>
+          <p>A neutron is a subatomic particle that is part of the atom (along with the proton and the electron). Neutrons and protons form the atomic nucleus. Neutrons have no net electrical charge, unlike the proton that has a positive electrical charge.</p>
+        </div> 
+        <div id="nucleusText">
+          <h5>Nucleus</h5>
+          <p>The nucleus is made up by protons and neutrons which act as the center of gravity of the atom</p>
+        </div> 
+        <div id="protonText">
+          <h5>Proton</h5>
+          <p>A proton is a positively charged subatomic particle within the atomic nucleus of atoms. The number of protons in the atomic nucleus is what determines the atomic number of an element, as indicated in the periodic table of the elements.</p>
+        </div>
+        <div id="electronText">
+          <h5>Electron</h5>
+          <p>An electron is a negatively charged stable elementary particle. Along with neutrons and protons it is one of the three subparticles that make up an atom. For this reason it can also be defined as a subatomic particle. It is part of the group of leptons.</p>
+        </div>
+        </container>
+      <container id="Controls">
+        <h3>Interactive Model</h3>
+          <h4>What makes up an atom?</h4>
+          <div id="atomParts">
+            <p>The atom is a structure in which matter is organized in the physical world or in nature. Its structure is made up of different combinations of three sub-particles: </p>
+              <button type="button" class="btn" id="parts" onclick="neutronClick()"> neutrons</button>
+              <button type="button" class="btn" id="parts" onclick="protonClick()"> protons</button>
+              <button type="button" class="btn" id="parts" onclick="electronClick()"> electrons</button>
+              <button type="button" class="btn" id="parts" onclick="nucleusClick()"> nucleus</button>
+            <p>Molecules are made of atoms.</p>
+          </div>
+          <label> Select the number of protons, and find out what element it represents!
+          <select name="select" id="ElementSelect"> 
+            <script>
+              var elements = [
+                  ["Hydrogen", "H", 1],
+                  ["Helium", "He", 2],
+                  ["Lithium",	"Li", 3],
+                  ["Beryllium", "Be",4],
+                  ["Boron",	"B",	5],
+                  ["Carbon",	"C",	6],
+                  ["Nitrogen",	"N",	7],
+                  ["Oxygen","O",	8],
+                  ["Fluorine", "F",	9],
+                  ["Neon",	"Ne",	10],
+                  ["Sodium", "Na",	11],
+                  ["Magnesium", "Mg",	12],
+                  ["Aluminium",	"Al",	13],
+                  ["Silicon",	"Si",	14],
+                  ["Phosphorus",	"P",	15],
+                  ["Sulfur",	"S",	16],
+                  ["Chlorine",	"Cl",	17],
+                  ["Argon",	"Ar",	18],
+                  ["Potassium",	"K",	19],
+                  ["Calcium",	"Ca",	20],
+                  ["Scandium",	"Sc",	21],
+                  ["Titanium",	"Ti",	22],
+                  ["Vanadium",	"V",	23],
+                  ["Chromium",	"Cr",	24],
+                  ["Manganese",	"Mn",	25],
+                  ["Iron",	"Fe",	26],
+                  ["Cobalt",	"Co",	27],
+                  ["Nickel",	"Ni",	28],
+                  ["Copper",	"Cu",	29],
+                  ["Zinc",	"Zn",	30],
+                  ["Galium",	"Ga",	31],
+                  ["Germanium",	"Ge",	32],
+                  ["Arsenic",	"As",	33],
+                  ["Selenium",	"Se",	34],
+                  ["Bromine",	"Br",	35],
+                  ["Krypton",	"Kr",	36],
+                  ["Rubidium",	"Rb",	37],
+                  ["Strontium",	"Sr",	38],
+                  ["Yttrium",	"Y",	39],
+                  ["Zirconium",	"Zr",	40],
+                  ["Niobium",	"Nb",	41],
+                  ["Molibdenum",	"Mu",	42],
+                  ["Technetium",	"Tc",	43],
+                  ["Ruthenium",	"Ru",	44],
+                  ["Rhotium",	"R",	45],
+                  ["Palladium",	"Pd",	46],
+                  ["Silver",	"Ag",	47],
+                  ["Cadmium",	"Cd",	48],
+                  ["Indium",	"In",	49],
+                  ["Tin",	"Sn",	50],
+                  ["Antimony",	"Sb",	51],
+                  ["Tellurium",	"Te",	52],
+                  ["Iodine",	"I",	53],
+                  ["Xenon",	"Xe",	54],
+                  ["Caesium",	"Cs",	55],
+                  ["Barium",	"Ba",	56],
+                  ["Lanthanum",	"La",	57],
+                  ["Cerium",	"Ce",	58],
+                  ["Praseodymium",	"Pr",	59],
+                  ["Neodynium",	"Nd",	60],
+                  ["Promethium",	"Pm",	61],
+                  ["Samarium",	"Sm",	62],
+                  ["Europium",	"Eu",	63],
+                  ["Gadolinium",	"Gd",	64],
+                  ["Terbium",	"Tb",	65],
+                  ["Dysprosium",	"Dy",	66],
+                  ["Holmium",	"Ho",	67],
+                  ["Erbium",	"Er",	68],
+                  ["Thulium",	"Tm",	69],
+                  ["Ytterbium",	"Yb",	70],
+                  ["Lutetium",	"Lu",	71],
+                  ["Hafnium",	"Hf",	72],
+                  ["Tantalum",	"Ta",	73],
+                  ["Tungsten",	"W",	74],
+                  ["Rhenium",	"Re",	75],
+                  ["Osmium",	"Os",	76],
+                  ["Iridium",	"Ir",	77],
+                  ["Platinum",	"Pt",	78],
+                  ["Gold",	"Au",	79],
+                  ["Mercury",	"Hg",	80],
+                  ["Thalium",	"Tl",	81],
+                  ["Lead",	"Pb",	82],
+                  ["Bismuth",	"Bi",	83],
+                  ["Polonium",	"Po",	84],
+                  ["Astatine",	"At",	85],
+                  ["Radon",	"Rn",	86],
+                  ["Francium",	"Fr",	87],
+                  ["Radium",	"Ra",	88],
+                  ["Actinium",	"Ac",	89],
+                  ["Thorium",	"Th",	90],
+                  ["Protactinium",	"Uranium",	91],
+                  ["Uranium",	"U",	92],
+                  ["Neptunium",	"Np",	93],
+                  ["Plutonium",	"Pu",	94],
+                  ["Amercium",	"Am",	95],
+                  ["Curium",	"Cm",	96],
+                  ["Berkelium",	"Bk",	97],
+                  ["Californium",	"Cf",	98],
+                  ["Einstenium",	"Es",	99],
+                  ["Fermium",	"Fm",	100],
+                  ["Mendeleviur",	"Md",	101],
+                  ["Nobelium",	"No",	102],
+                  ["Lawrencium",	"Lr",	103],
+                  ["Rutherfordium",	"Rf",	104],
+                  ["Dubnium",	"Db",	105],
+                  ["Seaborgium",	"Sg",	106],
+                  ["Bohrium",	"Bh",	107],
+                  ["Hassium",	"Hs",	108],
+                  ["Meitnerium",	"Mt",	109],
+                  ["Darmstadtium",	"Ds",	110],
+                  ["Roentgenium",	"Rg",	111],
+                  ["Copernicium",	"Cn",	112],
+                  ["Nihonium",	"Nh",	113],
+                  ["Flerovium",	"Fl",	114],
+                  ["Moscovium",	"Mc",	115],
+                  ["Livermorium",	"Lv",	116],
+                  ["Tennessine",	"Ts",	117],
+                  ["Oganesson",	"Og",	118]
+              ]
+              var select = document.getElementById("ElementSelect"); 
+                for(var i = 0; i < elements.length; i++) {
+                var opt = elements[i][2];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+              }
+            </script>
+          </select>
+
+          <button type="button" class="btn btn-light" id="model" onclick="atomClick()">Atom</button>
+        </label>
+      </container>
+      <container>
+        <canvas id="canvas"></canvas>
+        <canvas id="canvasHUD"></canvas>
+      </container>
+    </div>
+  </section>
+
+  <section id="Services" class="content-section text-center">
+    <div class="container">
+      <div class="block-heading">
+        <h2>What We Offer</h2>
+        <p>Interactive 3D visualizers to enhance learning through multi-dimensional stimulation</p>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon yellow">
+              <div class="front-content">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                <h3>Interaction</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Interactivity</h3>
+              <p>We believe that learning oriented software should be engaging with the users</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon orange">
+              <div class="front-content">
+                <i class="fa fa-suitcase"></i>
+                <h3>Open source</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Wanna contribute?</h3>
+              <p>The platform is open to collaboration with like minded individuals that would like to contribute proactively to the pr</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box ">
+            <div class="service-icon red">
+              <div class="front-content">
+                <i class="fa fa-male" aria-hidden="true"></i>
+                <h3>Using computer graphics learned in class!</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>ThreeJS</h3>
+              <p>Built using ThreeJS, a JavaScript framework.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon grey">
+              <div class="front-content">
+                <i class="fa fa-users"></i>
+                <h3>Learning</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Learning</h3>
+              <p>Did you know we didn't have any prevoius experience with web development previous to this class? We have learnt a lot besides Computer Graphics. Hope you enjoy our little web application.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- TESTIMONIALS -->
+ <!-- TESTIMONIALS -->
+ <section id="Testimonials" class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="block-heading">
+          <h2>Testimonials</h2>
+          <p>We let users speak for us</p>
+        </div>
+        <div id="customers-testimonials" class="owl-carousel">
+          <div class="item">
+            <div class="shadow-effect">
+              <img class="img-circle" src="images/sarah.jpg" alt="">
+              <p>Students have a fantastic   time of studying when using the application, the manipulation of the elements really helps them to understand how they form</p>
+            </div>
+            <div class="testimonial-name">Sarah Jenks</div>
+          </div>
+          <div class="item">
+            <div class="shadow-effect">
+              <img class="img-circle" src="images/tangelia.jpg" alt="">
+              <p>This web application has a lot of potential! The 3D atom visualizer is beautiful :)</p>
+            </div>
+            <div class="testimonial-name">Tangelia Ekhoff</div>
+          </div>
+          <div class="item">
+            <div class="shadow-effect">
+              <img class="img-circle" src="images/john-doe.jpg" alt="">
+              <p>Easy to use and very helful for us educators that had a hard time explaining the dynamics of nucleus attraction and electron orbitals</p>
+            </div>
+            <div class="testimonial-name">John Doe</div>
+          </div>
+          <div class="item">
+            <div class="shadow-effect">
+              <img class="img-circle" src="images/amy.jpg" alt="">
+              <p>Ever since I started using Atomic, students seem more engaged with chemistry classes and thei grades have gone up!</p>
+            </div>
+            <div class="testimonial-name">Amy Tan</div>
+          </div>
+          <div class="item">
+            <div class="shadow-effect">
+              <img class="img-circle" src="images/daniel.jpg" alt="">
+              <p>I really like the atomic project, im really looking forward to see their next ideas.</p>
+            </div>
+            <div class="testimonial-name">X user</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END OF TESTIMONIALS -->
+  <!-- END OF TESTIMONIALS -->
+  <section id="Contact" class="content-section">
+    <div class="container">
+      <div class="block-heading">
+        <h2>Contact Us</h2>
+        <p>As students, we are eager to learn and know your feedback.</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-wrap">
+            <form action="javascript:void(0)" method="post">
+              <div class="fname floating-label">
+                <input type="text" class="floating-input" name="full name" />
+                <label for="title">First Name</label>
+              </div>
+              <div class="fname floating-label">
+                <input type="text" class="floating-input" name="full name" />
+                <label for="title">Last Name</label>
+              </div>
+              <div class="email floating-label">
+                <input type="email" class="floating-input" name="email" />
+                <label for="email">Email</label>
+              </div>
+              <div class="contact floating-label">
+                <input type="tel" class="floating-input" name="contact" />
+                <label for="email">Mobile</label>
+              </div>
+              <div class="company floating-label">
+                <textarea type="text" class="floating-input" name="company" /></textarea>
+                <label for="email">Message</label>
+              </div>
+              <div class="submit-btn">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white" href="javascript:void(0)">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+        </li>
+      </ul>
+      <p class="text-muted small mb-0">Copyright © Atomic Model 2018</p>
+      <p class="text-muted small mb-0">Designed by <a href="ngarciaorozco.xyz" target="_blank">Nadia & Eduardo</p>
+    </div>
+  </footer>
+</body>
+
+</html>
