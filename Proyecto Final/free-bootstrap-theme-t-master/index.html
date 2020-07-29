@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,6 +24,10 @@
 </head>
 
 <body id="page-top" onload = main();>
+  <audio controls id="audio">
+    <source src="img/Above_Planets.mp3" type="audio/mpeg" controls autoplay>
+  Your browser does not support the audio element.
+  </audio>
   <!-- Navigation -->
   <div>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -73,12 +76,16 @@
   </section>
   <section id="App" class="content-section">
     <div id= "CanvasViewer">
-      <container id="partsText" class ="hidden">
-        <div id="neutronText" class="hidden">
+      <container id="partsText">
+        <div id="neutronText">
           <h5>Neutron</h5>
           <p>A neutron is a subatomic particle that is part of the atom (along with the proton and the electron). Neutrons and protons form the atomic nucleus. Neutrons have no net electrical charge, unlike the proton that has a positive electrical charge.</p>
-        </div>
-        <div id="protonnText">
+        </div> 
+        <div id="nucleusText">
+          <h5>Nucleus</h5>
+          <p>The nucleus is made up by protons and neutrons which act as the center of gravity of the atom</p>
+        </div> 
+        <div id="protonText">
           <h5>Proton</h5>
           <p>A proton is a positively charged subatomic particle within the atomic nucleus of atoms. The number of protons in the atomic nucleus is what determines the atomic number of an element, as indicated in the periodic table of the elements.</p>
         </div>
@@ -95,6 +102,7 @@
               <button type="button" class="btn" id="parts" onclick="neutronClick()"> neutrons</button>
               <button type="button" class="btn" id="parts" onclick="protonClick()"> protons</button>
               <button type="button" class="btn" id="parts" onclick="electronClick()"> electrons</button>
+              <button type="button" class="btn" id="parts" onclick="nucleusClick()"> nucleus</button>
             <p>Molecules are made of atoms.</p>
           </div>
           <label> Select the number of protons, and find out what element it represents!
@@ -199,82 +207,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="content-section text-center" id="Portfolio">
-    <div class="container">
-      <div class="block-heading">
-        <h2>Portfolio</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="portfolio-wrapper clearfix">
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-two.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-two.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-three.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-three.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-four.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-four.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-five.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-five.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-six.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-six.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
-        <a class="each-portfolio" data-fancybox="gallery" href="images/p-three.jpeg">
-          <div class="content hover-cont-wrap">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="images/p-three.jpeg">
-            <div class="content-details fadeIn-bottom">
-              <h5 class="p-title">Title</h5>
-              <p class="p-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <span class="zoom"><i class="fa fa-search-plus"></i></span>
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   </section>

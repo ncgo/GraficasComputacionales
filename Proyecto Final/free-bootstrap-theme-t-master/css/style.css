@@ -39,7 +39,50 @@ h4 {
   position: fixed;
 }
 
-#partsText {
+#neutronText {
+  display: none;
+  
+  position: absolute;
+  display: none;
+  z-index: 4;
+  left: 0.9%;
+  top: 110%;
+  width: 8em;
+  margin-bottom: -2.5em;
+  width: 300px;
+  height: 270px;
+  border: 3px solid white;
+  border-radius: 5%;
+  background-color:#3E92CC;
+  padding: 2%;
+  text-align: center;
+  color: white;
+}
+
+#nucleusText {
+  display: none;
+  
+  position: absolute;
+  display: none;
+  z-index: 4;
+  left: 0.9%;
+  top: 110%;
+  width: 8em;
+  margin-bottom: -2.5em;
+  width: 300px;
+  height: 270px;
+  border: 3px solid white;
+  border-radius: 5%;
+  background-color:#3E92CC;
+  padding: 2%;
+  text-align: center;
+  color: white;
+}
+
+
+#electronText {
+  display: none;
+  
   position: absolute;
   display: none;
   z-index: 4;
@@ -48,7 +91,7 @@ h4 {
   width: 8em;
   margin-bottom: -2.5em;
   width: 300px;
-  height: 85%;
+  height: 270px;
   border: 3px solid white;
   border-radius: 5%;
   background-color:#3E92CC;
@@ -56,14 +99,31 @@ h4 {
   text-align: center;
   color: white;
 }
-.hidden {
+
+#protonText {
   display: none;
+  
+  position: absolute;
+  display: none;
+  z-index: 4;
+  left: 0.9%;
+  top: 130%;
+  width: 8em;
+  margin-bottom: -2.5em;
+  width: 300px;
+  height: 270px;
+  border: 3px solid white;
+  border-radius: 5%;
+  background-color:#3E92CC;
+  padding: 2%;
+  text-align: center;
+  color: white;
 }
 
-.unhidden{
-  display: absolute;
-}
-#neutronText {
-  display: none;
+#audio {
+  position: fixed;
+  z-index: 99;
+  left: 0%%;
+  bottom: 0%;
 }
 
