@@ -5,12 +5,12 @@ var scene, atomView, sceneBackground, neutronView, protonView, electronView, sce
 var camera, cameraBackground, cameraAtom, backgroundAtom, camera2;
 var light, lightBackground;
 var deepSpace, earth;
-var electron, neutron, proton, atom, orbit;
+var electron, neutron, proton, atom, orbit, nucleus;
 var orbitas = [];
 var view = "atomView";
 
 class Particula extends THREE.Mesh {
-  constructor(type = "proton") {
+  constructor(type = "nucleus") {
     super();
     this.type = type;
     if (type == "proton") {
@@ -23,12 +23,16 @@ class Particula extends THREE.Mesh {
       this.material = new THREE.MeshLambertMaterial({
         map: new THREE.TextureLoader().load("img/neutron1.png"),
       });
-    } else {
+    } else if (type == "electron") {
       this.geometry = new THREE.SphereGeometry(0.3, 100, 100);
       this.material = new THREE.MeshLambertMaterial({
-        map: new THREE.TextureLoader().load("img/electron.png"),
+        map: new THREE.TextureLoader().load("img/electron.png")
       });
-    }
+    } else {
+      this.geometry = new THREE.SphereGeometry(2, 100, 100);
+      this.material = new THREE.MeshLambertMaterial({
+        map: new THREE.TextureLoader().load("img/nucleus.png")});
+      }
     new THREE.Mesh(this.geometry, this.material);
   }
 
@@ -103,7 +107,8 @@ function neutronClick() {
 }
 
 function protonClick() {
-    var text = document.getElementById("protonText");
+  
+  var text = document.getElementById("protonText");
   console.log(text.style.display);
   if (text.style.display === "none") {
     text.style.display = "block";
@@ -189,6 +194,7 @@ function atomClick() {
   view = "atomView";
   var protonsNo = document.getElementById("ElementSelect");
   console.log(protonsNo.value);
+  alert("YOU HAVE SELECTED A "+ elements[protonsNo.value][0]+" ATOM");
   // FRONT SCENE
   atomView = new THREE.Scene();
   scene = atomView;
@@ -306,104 +312,113 @@ function createAtom(protons = 1) {
         
     }
     */
-  for (let i = 0; i < protons; i++) {
-    particles = [];
-    proton = new Particula("proton");
-    var placed = false;
-    var x, y, z;
-    var distance = 1.2;
-    console.log("hola desde afuera");
-    while (placed == false) {
-      console.log("hola");
-      x = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        x = x * -1;
-      }
-      y = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        y = y * -1;
-      }
-      z = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        z = z * -1;
-      }
-
-      if (particles.length == 0) {
-        proton.position.set(x, y, z);
-        break;
-      } else {
-        placed = true;
-        for (var n = 0; n < particles.length; n++) {
-          var d = Math.pow(
-            Math.pow(x - particles[n].position.x, 2) +
-              Math.pow(y - particles[n].position.y, 2) +
-              Math.pow(z - particles[n].position.z, 2),
-            0.5
-          );
-          if (d < 1) {
-            placed = false;
-            break;
+   if( protons <= 23 ){
+    for (let i = 0; i < protons; i++) {
+      particles = [];
+      proton = new Particula("proton");
+      var placed = false;
+      var x, y, z;
+      var distance = 1.2;
+      console.log("hola desde afuera");
+      while (placed == false) {
+        console.log("hola");
+        x = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          x = x * -1;
+        }
+        y = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          y = y * -1;
+        }
+        z = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          z = z * -1;
+        }
+  
+        if (particles.length == 0) {
+          proton.position.set(x, y, z);
+          break;
+        } else {
+          placed = true;
+          for (var n = 0; n < particles.length; n++) {
+            var d = Math.pow(
+              Math.pow(x - particles[n].position.x, 2) +
+                Math.pow(y - particles[n].position.y, 2) +
+                Math.pow(z - particles[n].position.z, 2),
+              0.5
+            );
+            if (d < 1) {
+              placed = false;
+              break;
+            }
           }
         }
       }
+      proton.position.set(x, y, z);
+      proton.rotation.y = proton.rotation.y - 1.6;
+      scene.add(proton);
+      particles.push(proton);
     }
-    proton.position.set(x, y, z);
-    proton.rotation.y = proton.rotation.y - 1.6;
-    scene.add(proton);
-    particles.push(proton);
-  }
-
-  for (let i = 0; i < protons; i++) {
-    neutron = new Particula("neutron");
-    var placed = false;
-    var x, y, z;
-    var distance = 1.2;
-    console.log("hola desde afuera");
-    while (placed == false) {
-      console.log("hola");
-      x = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        x = x * -1;
-      }
-      y = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        y = y * -1;
-      }
-      z = Math.random() * distance;
-      if (Math.random() > 0.5) {
-        z = z * -1;
-      }
-
-      if (particles.length == 0) {
-        neutron.position.set(x, y, z);
-        break;
-      } else {
-        placed = true;
-        for (var n = 0; n < particles.length; n++) {
-          var d = Math.pow(
-            Math.pow(x - particles[n].position.x, 2) +
-              Math.pow(y - particles[n].position.y, 2) +
-              Math.pow(z - particles[n].position.z, 2),
-            0.5
-          );
-          if (d < 1) {
-            placed = false;
-            break;
+  
+    for (let i = 0; i < protons; i++) {
+      neutron = new Particula("neutron");
+      var placed = false;
+      var x, y, z;
+      var distance = 1.2;
+      console.log("hola desde afuera");
+      while (placed == false) {
+        console.log("hola");
+        x = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          x = x * -1;
+        }
+        y = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          y = y * -1;
+        }
+        z = Math.random() * distance;
+        if (Math.random() > 0.5) {
+          z = z * -1;
+        }
+  
+        if (particles.length == 0) {
+          neutron.position.set(x, y, z);
+          break;
+        } else {
+          placed = true;
+          for (var n = 0; n < particles.length; n++) {
+            var d = Math.pow(
+              Math.pow(x - particles[n].position.x, 2) +
+                Math.pow(y - particles[n].position.y, 2) +
+                Math.pow(z - particles[n].position.z, 2),
+              0.5
+            );
+            if (d < 1) {
+              placed = false;
+              break;
+            }
           }
         }
       }
+      neutron.position.set(x, y, z);
+      neutron.rotation.y = neutron.rotation.y - 1.6; 
+      scene.add(neutron);
+      particles.push(neutron);
     }
-    neutron.position.set(x, y, z);
-    neutron.rotation.y = neutron.rotation.y - 1.6; 
-    scene.add(neutron);
-    particles.push(neutron);
-  }
+   } else if(protons>=24){
+      nucleus = new Particula();
+      nucleus.position.set(0,0,0);
+      scene.add(nucleus);
+   }
+
+
+  
 
   accomodateElectrons(protons);
 }
 
-var orbitalMax = [2, 8, 18, 32];
-var orbitalMaxSum = [2, 10, 28, 60];
+var orbitalMax = [2, 8, 18, 32, 64, 54];
+var orbitalMaxSum = [2, 10, 28, 60, 124, 178];
 function accomodateElectrons(electrons = 1) {
   var e = electrons;
   for (let i = 0; i <= 4; i++) {
@@ -600,15 +615,120 @@ function main() {
 var elements = [
   ["Hydrogen", "H", 1],
   ["Helium", "He", 2],
-  ["Lithium", "Li", 3],
-  ["Beryllium", "Be", 4],
-  ["Boron", "B", 5],
-  ["Carbon", "C", 6],
-  ["Nitrogen", "N", 7],
-  ["Oxygen", "O", 8],
-  ["Fluorine", "F", 9],
-  ["Neon", "Ne", 10],
-  ["Sodium", "Na", 11],
-  ["Magnesium", "Mg", 12],
-  ["Aluminium", "Al", 13],
-];
+  ["Lithium",	"Li", 3],
+  ["Beryllium", "Be",4],
+  ["Boron",	"B",	5],
+  ["Carbon",	"C",	6],
+  ["Nitrogen",	"N",	7],
+  ["Oxygen","O",	8],
+  ["Fluorine", "F",	9],
+  ["Neon",	"Ne",	10],
+  ["Sodium", "Na",	11],
+  ["Magnesium", "Mg",	12],
+  ["Aluminium",	"Al",	13],
+  ["Silicon",	"Si",	14],
+  ["Phosphorus",	"P",	15],
+  ["Sulfur",	"S",	16],
+  ["Chlorine",	"Cl",	17],
+  ["Argon",	"Ar",	18],
+  ["Potassium",	"K",	19],
+  ["Calcium",	"Ca",	20],
+  ["Scandium",	"Sc",	21],
+  ["Titanium",	"Ti",	22],
+  ["Vanadium",	"V",	23],
+  ["Chromium",	"Cr",	24],
+  ["Manganese",	"Mn",	25],
+  ["Iron",	"Fe",	26],
+  ["Cobalt",	"Co",	27],
+  ["Nickel",	"Ni",	28],
+  ["Copper",	"Cu",	29],
+  ["Zinc",	"Zn",	30],
+  ["Galium",	"Ga",	31],
+  ["Germanium",	"Ge",	32],
+  ["Arsenic",	"As",	33],
+  ["Selenium",	"Se",	34],
+  ["Bromine",	"Br",	35],
+  ["Krypton",	"Kr",	36],
+  ["Rubidium",	"Rb",	37],
+  ["Strontium",	"Sr",	38],
+  ["Yttrium",	"Y",	39],
+  ["Zirconium",	"Zr",	40],
+  ["Niobium",	"Nb",	41],
+  ["Molibdenum",	"Mu",	42],
+  ["Technetium",	"Tc",	43],
+  ["Ruthenium",	"Ru",	44],
+  ["Rhotium",	"R",	45],
+  ["Palladium",	"Pd",	46],
+  ["Silver",	"Ag",	47],
+  ["Cadmium",	"Cd",	48],
+  ["Indium",	"In",	49],
+  ["Tin",	"Sn",	50],
+  ["Antimony",	"Sb",	51],
+  ["Tellurium",	"Te",	52],
+  ["Iodine",	"I",	53],
+  ["Xenon",	"Xe",	54],
+  ["Caesium",	"Cs",	55],
+  ["Barium",	"Ba",	56],
+  ["Lanthanum",	"La",	57],
+  ["Cerium",	"Ce",	58],
+  ["Praseodymium",	"Pr",	59],
+  ["Neodynium",	"Nd",	60],
+  ["Promethium",	"Pm",	61],
+  ["Samarium",	"Sm",	62],
+  ["Europium",	"Eu",	63],
+  ["Gadolinium",	"Gd",	64],
+  ["Terbium",	"Tb",	65],
+  ["Dysprosium",	"Dy",	66],
+  ["Holmium",	"Ho",	67],
+  ["Erbium",	"Er",	68],
+  ["Thulium",	"Tm",	69],
+  ["Ytterbium",	"Yb",	70],
+  ["Lutetium",	"Lu",	71],
+  ["Hafnium",	"Hf",	72],
+  ["Tantalum",	"Ta",	73],
+  ["Tungsten",	"W",	74],
+  ["Rhenium",	"Re",	75],
+  ["Osmium",	"Os",	76],
+  ["Iridium",	"Ir",	77],
+  ["Platinum",	"Pt",	78],
+  ["Gold",	"Au",	79],
+  ["Mercury",	"Hg",	80],
+  ["Thalium",	"Tl",	81],
+  ["Lead",	"Pb",	82],
+  ["Bismuth",	"Bi",	83],
+  ["Polonium",	"Po",	84],
+  ["Astatine",	"At",	85],
+  ["Radon",	"Rn",	86],
+  ["Francium",	"Fr",	87],
+  ["Radium",	"Ra",	88],
+  ["Actinium",	"Ac",	89],
+  ["Thorium",	"Th",	90],
+  ["Protactinium",	"Uranium",	91],
+  ["Uranium",	"U",	92],
+  ["Neptunium",	"Np",	93],
+  ["Plutonium",	"Pu",	94],
+  ["Amercium",	"Am",	95],
+  ["Curium",	"Cm",	96],
+  ["Berkelium",	"Bk",	97],
+  ["Californium",	"Cf",	98],
+  ["Einstenium",	"Es",	99],
+  ["Fermium",	"Fm",	100],
+  ["Mendeleviur",	"Md",	101],
+  ["Nobelium",	"No",	102],
+  ["Lawrencium",	"Lr",	103],
+  ["Rutherfordium",	"Rf",	104],
+  ["Dubnium",	"Db",	105],
+  ["Seaborgium",	"Sg",	106],
+  ["Bohrium",	"Bh",	107],
+  ["Hassium",	"Hs",	108],
+  ["Meitnerium",	"Mt",	109],
+  ["Darmstadtium",	"Ds",	110],
+  ["Roentgenium",	"Rg",	111],
+  ["Copernicium",	"Cn",	112],
+  ["Nihonium",	"Nh",	113],
+  ["Flerovium",	"Fl",	114],
+  ["Moscovium",	"Mc",	115],
+  ["Livermorium",	"Lv",	116],
+  ["Tennessine",	"Ts",	117],
+  ["Oganesson",	"Og",	118]
+]
