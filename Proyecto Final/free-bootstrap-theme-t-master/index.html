@@ -65,7 +65,7 @@
     <div class="container content-wrap text-center">
       <h1>Atomic Structure Visualizer</h1>
       <h3>
-          <em>An innovative learing tool using threeJS</em>
+          <em>An innovative learning tool using threeJS</em>
         </h3>
       <a class="btn btn-primary btn-xl smooth-scroll" href="#App">Try it now!</a>
     </div>
@@ -73,6 +73,20 @@
   </section>
   <section id="App" class="content-section">
     <div id= "CanvasViewer">
+      <container id="partsText" class ="hidden">
+        <div id="neutronText" class="hidden">
+          <h5>Neutron</h5>
+          <p>A neutron is a subatomic particle that is part of the atom (along with the proton and the electron). Neutrons and protons form the atomic nucleus. Neutrons have no net electrical charge, unlike the proton that has a positive electrical charge.</p>
+        </div>
+        <div id="protonnText">
+          <h5>Proton</h5>
+          <p>A proton is a positively charged subatomic particle within the atomic nucleus of atoms. The number of protons in the atomic nucleus is what determines the atomic number of an element, as indicated in the periodic table of the elements.</p>
+        </div>
+        <div id="electronText">
+          <h5>Electron</h5>
+          <p>An electron is a negatively charged stable elementary particle. Along with neutrons and protons it is one of the three subparticles that make up an atom. For this reason it can also be defined as a subatomic particle. It is part of the group of leptons.</p>
+        </div>
+        </container>
       <container id="Controls">
         <h3>Interactive Model</h3>
           <h4>What makes up an atom?</h4>
@@ -83,7 +97,37 @@
               <button type="button" class="btn" id="parts" onclick="electronClick()"> electrons</button>
             <p>Molecules are made of atoms.</p>
           </div>
-          <button type="button" class="btn btn-light" id="model">Different Models</button>
+          <label> Select the number of protons, and find out what element it represents!
+          <select name="select" id="ElementSelect"> 
+            <script>
+              var elements = [
+                  ["Hydrogen", "H", 1],
+                  ["Helium", "He", 2],
+                  ["Lithium",	"Li", 3],
+                  ["Beryllium", "Be",4],
+                      ["Boron",	"B",	5],
+                      ["Carbon",	"C",	6],
+                      ["Nitrogen",	"N",	7],
+                      ["Oxygen","O",	8],
+                      ["Fluorine", "F",	9],
+                      ["Neon",	"Ne",	10],
+                      ["Sodium", "Na",	11],
+                      ["Magnesium", "Mg",	12],
+                      ["Aluminium",	"Al",	13]
+              ]
+              var select = document.getElementById("ElementSelect"); 
+                for(var i = 0; i < elements.length; i++) {
+                var opt = elements[i][2];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+              }
+            </script>
+          </select>
+
+          <button type="button" class="btn btn-light" id="model" onclick="atomClick()">Atom</button>
+        </label>
       </container>
       <container>
         <canvas id="canvas"></canvas>
@@ -91,9 +135,6 @@
       </container>
     </div>
   </section>
-
-  
-  
 
   <section id="Services" class="content-section text-center">
     <div class="container">
