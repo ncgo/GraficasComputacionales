@@ -5,13 +5,38 @@ var scene, sceneBackground;
 var camera, cameraBackground;
 var light, lightBackground;
 var deepSpace, earth;
-//var container = document.getElementById('CanvasViewer');
-//renderer.setSize($(container).width(), $(container).height());
-//container.appendChild(renderer.domElement);
+var electron, neutron, proton, atom;
+
+class Particula extends THREE.Mesh
+{   
+    constructor(type="proton")
+    {
+        super();
+        this.type = type;
+        if (type == "proton"){
+            this.geometry = new THREE.SphereGeometry(0.95,100, 100);
+            this.material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("img/proton.png")});
+        } else if (type == "neutron") {
+            this.geometry = new THREE.SphereGeometry(1,100, 100);
+            this.material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("img/neutron1.png")});
+        } else{
+            this.geometry = new THREE.SphereGeometry(0.3,100, 100);
+            this.material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("img/electron.png")});
+        }
+        new THREE.Mesh(this.geometry, this.material);
+    }
+
+    setPhongMaterial(shininess = 30.)
+    {
+        this.material = new THREE.MeshPhongMaterial({color: this.color, shininess: shininess});
+    }
+}
 
 function update()
 {
-    earth.rotation.y = earth.rotation.y + 0.01;
+    proton.rotation.y = proton.rotation.y - 0.04;
+    neutron.rotation.y = neutron.rotation.y - 0.04;
+    electron.rotation.y = electron.rotation.y - 0.04;
 }
 
 function renderLoop() 
@@ -24,6 +49,10 @@ function renderLoop()
     requestAnimationFrame(renderLoop); 
 }
 
+function neutronClick(){
+
+}
+
 function main()
 {
     // CANVAS
@@ -31,16 +60,22 @@ function main()
 
     // RENDERER ENGINE
     engine = new THREE.WebGLRenderer({canvas: canvas});
-    engine.setSize(window.innerWidth, window.innerHeight);
+    engine.setSize(window.innerWidth/1.2, window.innerHeight/1.1);
     engine.setClearColor(new THREE.Color(0.2, 0.2, 0.35), 1.);     
 
     // FRONT SCENE
     scene = new THREE.Scene();   
 
     // MODELS
-    // EARTH
-    var material = new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("img/earth-map.jpg")});
-    earth = new THREE.Mesh(new THREE.SphereGeometry(1,100, 100), material);
+    // Neutron
+    // Electron
+    // Proton
+    proton = new Particula();
+    electron = new Particula("electron");
+    electron.position.set(2., 0., 0.);
+    neutron = new Particula("neutron");
+    neutron.position.set(-3., 0., 0.);
+
 
     // CAMERA
     camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 0.01, 10000.);  // CAMERA
@@ -53,7 +88,9 @@ function main()
     light.position.set(0, 0, 10);
 
     // SCENE GRAPH
-    scene.add(earth);
+    scene.add(proton);
+    scene.add(neutron);
+    scene.add(electron);
     scene.add(camera);
     scene.add(light);
 

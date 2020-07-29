@@ -22,7 +22,6 @@
     <script src="js/lib/dat.gui.min.js" type="text/javascript"></script>
     <script src="js/event-handler.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
-    <script src="js/app.js" type="text/javascript"></script>
 </head>
 
 <body id="page-top" onload = main();>
@@ -76,6 +75,15 @@
     <div id= "CanvasViewer">
       <container id="Controls">
         <h3>Interactive Model</h3>
+          <h4>What makes up an atom?</h4>
+          <div id="atomParts">
+            <p>The atom is a structure in which matter is organized in the physical world or in nature. Its structure is made up of different combinations of three sub-particles: </p>
+              <button type="button" class="btn" id="parts" onclick="neutronClick()"> neutrons</button>
+              <button type="button" class="btn" id="parts" onclick="protonClick()"> protons</button>
+              <button type="button" class="btn" id="parts" onclick="electronClick()"> electrons</button>
+            <p>Molecules are made of atoms.</p>
+          </div>
+          <button type="button" class="btn btn-light" id="model">Different Models</button>
       </container>
       <container>
         <canvas id="canvas"></canvas>
