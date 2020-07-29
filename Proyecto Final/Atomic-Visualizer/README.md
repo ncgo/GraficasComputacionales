@@ -9,12 +9,14 @@ Creada para fines académicos.
 
 **Visite nuestro documento de investigación previo al desarrollo de esta aplicación dando click en el siguiente** [link](https://docs.google.com/document/d/1kErFLqZeaVEJxs5atMzqsMRwzaj6cd22hS1YCl_Yg9M/edit?usp=drivesdk).
 
+
 ## Tecnologías Utilizadas
 - HTML5
 - CSS
 - Bootstrap
 - Javascript
 - ThreeJS
+
 
 ### Modo de Uso
 1. Puedes manipular el modelo con tu mouse al arrastrar el canvas o al acercar o alejar.
